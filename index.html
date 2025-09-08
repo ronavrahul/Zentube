@@ -56,8 +56,8 @@
     <!-- App Container -->
     <div id="app" class="h-screen w-full flex flex-col">
 
-        <!-- HEADER SECTION -->
-        <header class="bg-white flex items-center justify-between px-2 sm:px-4 py-2 sticky top-0 z-40 shadow-sm">
+        <!-- HEADER SECTION: Now part of the main layout flow -->
+        <header class="bg-white flex-shrink-0 flex items-center justify-between px-2 sm:px-4 py-2 z-40 shadow-sm">
             <!-- Left Header -->
             <div class="flex items-center space-x-2 sm:space-x-4">
                 <button class="p-2 rounded-full hover:bg-zinc-200">
@@ -163,8 +163,7 @@
         <!-- Main Content Area -->
         <div class="flex flex-1 overflow-hidden">
             <!-- SIDEBAR SECTION -->
-            <aside class="w-60 bg-white p-2 flex-shrink-0 overflow-y-auto hidden md:block">
-                <!-- Sidebar content remains the same -->
+            <aside class="w-60 bg-white p-2 flex-shrink-0 hidden md:block">
                  <nav>
                     <ul>
                         <!-- Sidebar items -->
@@ -212,10 +211,10 @@
                 </nav>
             </aside>
 
-            <!-- VIDEO GRID SECTION -->
-            <main class="flex-1 p-4 overflow-y-auto pb-20 md:pb-4">
+            <!-- Main content column -->
+            <div class="flex-1 flex flex-col overflow-hidden">
                 <!-- Category Filters -->
-                <div class="sticky top-0 bg-white py-3 -mx-4 px-4 mb-4 z-10 border-b border-zinc-200">
+                <div class="bg-white px-4 py-3 border-b border-zinc-200 flex-shrink-0">
                     <div class="flex space-x-3 overflow-x-auto no-scrollbar">
                         <button class="category-pill active px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">All</button>
                         <button class="category-pill bg-zinc-200 text-zinc-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">Music</button>
@@ -228,136 +227,255 @@
                     </div>
                 </div>
 
-                <!-- Video Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
-                    <!-- Video Cards remain the same -->
-                    <!-- Video Card 1 -->
-                    <div class="flex flex-col space-y-2">
-                        <div class="relative">
-                            <img src="https://placehold.co/400x225/eab308/000000?text=Prashant+Kishor" alt="Video Thumbnail" class="w-full rounded-xl">
-                            <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">32:24</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <img src="https://placehold.co/40x40/4f46e5/ffffff?text=TK" alt="Channel" class="h-9 w-9 rounded-full">
-                            <div>
-                                <h3 class="font-medium text-base leading-tight">FULL STORY of Prashant Kishor</h3>
-                                <p class="text-sm text-zinc-600">Tarun Kumar Kedia</p>
-                                <p class="text-sm text-zinc-600">199K views &bull; 4 days ago</p>
+                <!-- Scrollable Video Grid Area -->
+                <main class="flex-1 overflow-y-auto p-4 pb-20 md:pb-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
+                        <!-- Video Card 1 -->
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/eab308/000000?text=Prashant+Kishor" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">32:24</span>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Video Card 2 -->
-                    <div class="flex flex-col space-y-2">
-                        <div class="relative">
-                             <img src="https://placehold.co/400x225/ec4899/ffffff?text=Sharon+BIHAR" alt="Video Thumbnail" class="w-full rounded-xl">
-                             <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">10:45</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <img src="https://placehold.co/40x40/059669/ffffff?text=SV" alt="Channel" class="h-9 w-9 rounded-full">
-                            <div>
-                                <h3 class="font-medium text-base leading-tight">SHARON FROM BIHAR (part 1): Bihar & Bad Driving | Stand-up comedy</h3>
-                                <p class="text-sm text-zinc-600">Sharon Verma</p>
-                                <p class="text-sm text-zinc-600">1.1M views &bull; 2 days ago</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video Card 3 -->
-                    <div class="flex flex-col space-y-2">
-                        <div class="relative">
-                            <img src="https://placehold.co/400x225/f97316/ffffff?text=DEFENDER" alt="Video Thumbnail" class="w-full rounded-xl">
-                            <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">18:12</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <img src="https://placehold.co/40x40/3b82f6/ffffff?text=A" alt="Channel" class="h-9 w-9 rounded-full">
-                            <div>
-                                <h3 class="font-medium text-base leading-tight">The Ultimate Off-Roader? Land Rover Defender Review</h3>
-                                <p class="text-sm text-zinc-600">Auto Hub</p>
-                                <p class="text-sm text-zinc-600">540K views &bull; 1 week ago</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video Card 4 -->
-                    <div class="flex flex-col space-y-2">
-                        <div class="relative">
-                             <img src="https://placehold.co/400x225/0ea5e9/ffffff?text=Google+Chrome" alt="Video Thumbnail" class="w-full rounded-xl">
-                        </div>
-                        <div class="flex space-x-3">
-                            <img src="https://placehold.co/40x40/22c55e/ffffff?text=G" alt="Channel" class="h-9 w-9 rounded-full">
-                            <div>
-                                <h3 class="font-medium text-base leading-tight">Switch to Chrome for a great browsing experience.</h3>
-                                <p class="text-sm text-zinc-600">Google Chrome <span class="bg-zinc-200 text-zinc-700 px-1.5 py-0.5 rounded-md text-xs">Sponsored</span></p>
-                                <div class="mt-2">
-                                    <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded-full text-sm">Download</button>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/4f46e5/ffffff?text=TK" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">FULL STORY of Prashant Kishor</h3>
+                                    <p class="text-sm text-zinc-600">Tarun Kumar Kedia</p>
+                                    <p class="text-sm text-zinc-600">199K views &bull; 4 days ago</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- More Video Cards... -->
-                     <div class="flex flex-col space-y-2">
-                        <div class="relative">
-                            <img src="https://placehold.co/400x225/8b5cf6/ffffff?text=RADHA+RAMAN" alt="Video Thumbnail" class="w-full rounded-xl">
-                            <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">4:20</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <img src="https://placehold.co/40x40/d946ef/ffffff?text=M" alt="Channel" class="h-9 w-9 rounded-full">
-                            <div>
-                                <h3 class="font-medium text-base leading-tight">Radha Raman | Lofi Mix | Soulful Music</h3>
-                                <p class="text-sm text-zinc-600">Lofi Beats</p>
-                                <p class="text-sm text-zinc-600">2.3M views &bull; 1 month ago</p>
+                        <!-- Video Card 2 -->
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                 <img src="https://placehold.co/400x225/ec4899/ffffff?text=Sharon+BIHAR" alt="Video Thumbnail" class="w-full rounded-xl">
+                                 <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">10:45</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/059669/ffffff?text=SV" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">SHARON FROM BIHAR (part 1): Bihar & Bad Driving | Stand-up comedy</h3>
+                                    <p class="text-sm text-zinc-600">Sharon Verma</p>
+                                    <p class="text-sm text-zinc-600">1.1M views &bull; 2 days ago</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                     <div class="flex flex-col space-y-2">
-                        <div class="relative">
-                             <img src="https://placehold.co/400x225/6366f1/ffffff?text=Trekking+Himalayas" alt="Video Thumbnail" class="w-full rounded-xl">
-                            <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">25:00</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <img src="https://placehold.co/40x40/14b8a6/ffffff?text=T" alt="Channel" class="h-9 w-9 rounded-full">
-                            <div>
-                                <h3 class="font-medium text-base leading-tight">My First Himalayan Trek | A Journey to Remember</h3>
-                                <p class="text-sm text-zinc-600">Travel Stories</p>
-                                <p class="text-sm text-zinc-600">88K views &bull; 3 days ago</p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="flex flex-col space-y-2">
-                        <div class="relative">
-                            <img src="https://placehold.co/400x225/10b981/ffffff?text=Coding+Tutorial" alt="Video Thumbnail" class="w-full rounded-xl">
-                            <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">1:15:30</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <img src="https://placehold.co/40x40/f43f5e/ffffff?text=C" alt="Channel" class="h-9 w-9 rounded-full">
-                            <div>
-                                <h3 class="font-medium text-base leading-tight">Learn JavaScript in 2025 - Full Course for Beginners</h3>
-                                <p class="text-sm text-zinc-600">Code Master</p>
-                                <p class="text-sm text-zinc-600">3M views &bull; 6 months ago</p>
+                        <!-- Video Card 3 -->
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/f97316/ffffff?text=DEFENDER" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">18:12</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/3b82f6/ffffff?text=A" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">The Ultimate Off-Roader? Land Rover Defender Review</h3>
+                                    <p class="text-sm text-zinc-600">Auto Hub</p>
+                                    <p class="text-sm text-zinc-600">540K views &bull; 1 week ago</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="flex flex-col space-y-2">
-                        <div class="relative">
-                            <img src="https://placehold.co/400x225/64748b/ffffff?text=Unboxing" alt="Video Thumbnail" class="w-full rounded-xl">
-                            <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">12:54</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <img src="https://placehold.co/40x40/334155/ffffff?text=T" alt="Channel" class="h-9 w-9 rounded-full">
-                            <div>
-                                <h3 class="font-medium text-base leading-tight">Unboxing the NEWEST Smartphone! Is it worth it?</h3>
-                                <p class="text-sm text-zinc-600">Tech Guru</p>
-                                <p class="text-sm text-zinc-600">987K views &bull; 5 days ago</p>
+                        <!-- Video Card 4 -->
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                 <img src="https://placehold.co/400x225/0ea5e9/ffffff?text=Google+Chrome" alt="Video Thumbnail" class="w-full rounded-xl">
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/22c55e/ffffff?text=G" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">Switch to Chrome for a great browsing experience.</h3>
+                                    <p class="text-sm text-zinc-600">Google Chrome <span class="bg-zinc-200 text-zinc-700 px-1.5 py-0.5 rounded-md text-xs">Sponsored</span></p>
+                                    <div class="mt-2">
+                                        <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded-full text-sm">Download</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Video Cards 5-8 -->
+                         <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/8b5cf6/ffffff?text=RADHA+RAMAN" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">4:20</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/d946ef/ffffff?text=M" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">Radha Raman | Lofi Mix | Soulful Music</h3>
+                                    <p class="text-sm text-zinc-600">Lofi Beats</p>
+                                    <p class="text-sm text-zinc-600">2.3M views &bull; 1 month ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                 <img src="https://placehold.co/400x225/6366f1/ffffff?text=Trekking+Himalayas" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">25:00</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/14b8a6/ffffff?text=T" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">My First Himalayan Trek | A Journey to Remember</h3>
+                                    <p class="text-sm text-zinc-600">Travel Stories</p>
+                                    <p class="text-sm text-zinc-600">88K views &bull; 3 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/10b981/ffffff?text=Coding+Tutorial" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">1:15:30</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/f43f5e/ffffff?text=C" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">Learn JavaScript in 2025 - Full Course for Beginners</h3>
+                                    <p class="text-sm text-zinc-600">Code Master</p>
+                                    <p class="text-sm text-zinc-600">3M views &bull; 6 months ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/64748b/ffffff?text=Unboxing" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">12:54</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/334155/ffffff?text=T" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">Unboxing the NEWEST Smartphone! Is it worth it?</h3>
+                                    <p class="text-sm text-zinc-600">Tech Guru</p>
+                                    <p class="text-sm text-zinc-600">987K views &bull; 5 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NEW Video Cards 9-16 -->
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/ef4444/ffffff?text=Cooking+Show" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">22:15</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/f59e0b/ffffff?text=CS" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">How to make the perfect Pizza at home</h3>
+                                    <p class="text-sm text-zinc-600">Chef's Kitchen</p>
+                                    <p class="text-sm text-zinc-600">750K views &bull; 2 weeks ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/22d3ee/000000?text=DIY+Crafts" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">08:40</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/a78bfa/ffffff?text=D" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">5 Easy DIY Room Decor Ideas</h3>
+                                    <p class="text-sm text-zinc-600">Crafty Creations</p>
+                                    <p class="text-sm text-zinc-600">1.2M views &bull; 1 month ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/34d399/ffffff?text=Finance+Tips" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">15:00</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/facc15/000000?text=FT" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">Investing for Beginners in India</h3>
+                                    <p class="text-sm text-zinc-600">Money Matters</p>
+                                    <p class="text-sm text-zinc-600">450K views &bull; 3 weeks ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/f87171/ffffff?text=Podcast+Highlights" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">09:18</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/fb923c/ffffff?text=P" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">The Funniest Moments from Our Latest Podcast</h3>
+                                    <p class="text-sm text-zinc-600">The Talk Show</p>
+                                    <p class="text-sm text-zinc-600">95K views &bull; 6 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/38bdf8/ffffff?text=Tech+Review" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">11:35</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/a8a29e/ffffff?text=TR" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">New Budget Laptop Review!</h3>
+                                    <p class="text-sm text-zinc-600">Gadget Geek</p>
+                                    <p class="text-sm text-zinc-600">312K views &bull; 1 week ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/c084fc/ffffff?text=Workout" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">30:00</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/4ade80/ffffff?text=F" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">30-Min Full Body HIIT Workout</h3>
+                                    <p class="text-sm text-zinc-600">Fit Nation</p>
+                                    <p class="text-sm text-zinc-600">5M views &bull; 8 months ago</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/94a3b8/000000?text=History" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">45:10</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/e11d48/ffffff?text=H" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">The Mauryan Empire: An Untold Story</h3>
+                                    <p class="text-sm text-zinc-600">History Uncovered</p>
+                                    <p class="text-sm text-zinc-600">890K views &bull; 2 months ago</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex flex-col space-y-2">
+                            <div class="relative">
+                                <img src="https://placehold.co/400x225/f472b6/ffffff?text=Standup" alt="Video Thumbnail" class="w-full rounded-xl">
+                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">07:55</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <img src="https://placehold.co/40x40/581c87/ffffff?text=C" alt="Channel" class="h-9 w-9 rounded-full">
+                                <div>
+                                    <h3 class="font-medium text-base leading-tight">My School Life Was Weird | Standup Comedy</h3>
+                                    <p class="text-sm text-zinc-600">Comedy Central</p>
+                                    <p class="text-sm text-zinc-600">2.5M views &bull; 3 weeks ago</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-            </main>
+                </main>
+            </div>
         </div>
     </div>
 
