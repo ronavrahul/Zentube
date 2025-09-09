@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
     <title>ZenTube</title>
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -56,483 +56,192 @@
     <!-- App Container -->
     <div id="app" class="h-screen w-full flex flex-col">
 
-        <!-- HEADER SECTION: Now part of the main layout flow -->
-        <header class="bg-white flex-shrink-0 flex items-center justify-between px-2 sm:px-4 py-2 z-40 shadow-sm">
+        <!-- HEADER SECTION -->
+        <header id="main-header" class="bg-white flex-shrink-0 flex items-center justify-between px-2 sm:px-4 py-2 z-40 shadow-sm">
             <!-- Left Header -->
             <div class="flex items-center space-x-2 sm:space-x-4">
-                <button class="p-2 rounded-full hover:bg-zinc-200">
-                    <!-- Hamburger Icon -->
+                <button id="sidebar-toggle" class="p-2 rounded-full hover:bg-zinc-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
-                <div class="flex items-center space-x-1">
-                    <!-- YouTube Logo -->
+                <div id="logo-button" class="flex items-center space-x-1 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-red-600" viewBox="0 0 20 20" fill="currentColor">
                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
                     </svg>
                     <span class="text-xl font-semibold tracking-tighter">ZenTube</span>
                 </div>
             </div>
-
-            <!-- Center Header: Search Bar (Hidden on mobile) -->
+            <!-- Center Header -->
             <div class="hidden md:flex flex-1 justify-center px-4 lg:px-16">
                 <div class="w-full max-w-2xl flex items-center">
                     <input type="text" placeholder="Search" class="w-full bg-transparent border border-zinc-300 rounded-l-full px-4 py-2 focus:outline-none focus:border-red-500">
                     <button class="bg-zinc-100 border border-zinc-300 border-l-0 px-5 py-2 rounded-r-full hover:bg-zinc-200">
-                        <!-- Search Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </button>
-                     <button class="ml-4 p-2 rounded-full bg-zinc-100 hover:bg-zinc-200">
-                        <!-- Mic Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-14 0m7 10v-2m0 0a3 3 0 00-3-3H9m6 0a3 3 0 003-3V6a3 3 0 00-3-3H9a3 3 0 00-3 3v5a3 3 0 003 3h1m-1 4h2" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                     </button>
                 </div>
             </div>
-
             <!-- Right Header -->
             <div class="flex items-center space-x-2">
-                <!-- Mobile Search Icon -->
-                <button class="p-2 rounded-full hover:bg-zinc-200 md:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </button>
-                <button class="p-2 rounded-full hover:bg-zinc-200 hidden sm:block">
-                    <!-- Create Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                </button>
-                <button class="p-2 rounded-full hover:bg-zinc-200 relative">
-                    <!-- Notification Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                    </svg>
-                    <span class="absolute top-1 right-1 bg-red-600 text-white text-xs rounded-full px-1.5 py-0.5">9+</span>
-                </button>
-                
-                <!-- Profile Menu Button and Dropdown -->
-                <div id="profile-menu-button" class="relative">
-                    <img src="https://placehold.co/40x40/7c3aed/ffffff?text=R" alt="User Avatar" class="h-8 w-8 rounded-full cursor-pointer">
-                    <!-- Dropdown Menu -->
-                    <div id="profile-menu" class="hidden absolute top-10 right-0 bg-white rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 w-80 z-50 py-2">
-                        <!-- Menu Header -->
-                        <div class="flex items-center space-x-4 px-4 py-2 border-b">
-                            <img src="https://placehold.co/40x40/7c3aed/ffffff?text=R" alt="User Avatar" class="h-10 w-10 rounded-full">
-                            <div>
-                                <div class="font-semibold">Ronav Rahul</div>
-                                <div class="text-sm text-zinc-600">@ronavrahul</div>
-                                <a href="#" class="text-sm text-blue-600 hover:underline mt-1 block">View your channel</a>
-                            </div>
-                        </div>
-                        <!-- Menu Items -->
-                        <div class="py-1">
-                             <a href="#" class="flex items-center px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-100 space-x-4">
-                               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                               <span>Google Account</span></a>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-100 space-x-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
-                                <span>Switch account</span></a>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-100 space-x-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
-                                <span>Sign out</span></a>
-                        </div>
-                        <hr class="border-zinc-200">
-                         <div class="py-1">
-                             <a href="#" class="flex items-center px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-100 space-x-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                <span>Appearance: Device theme</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-auto text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-                             </a>
-                             <a href="#" class="flex items-center px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-100 space-x-4">
-                               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10-5-10M6.09 15a9 9 0 0011.827 0m-11.827 0c-1.865-2.435-1.865-5.565 0-8 1.864-2.435 4.89-2.435 6.754 0m-6.754 8a9 9 0 0111.827 0" /></svg>
-                                <span>Language: English</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-auto text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-                             </a>
-                        </div>
-                    </div>
-                </div>
+                 <button id="mobile-search-button" class="p-2 rounded-full hover:bg-zinc-200 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></button>
+                <div class="relative"><button id="notification-button" class="p-2 rounded-full hover:bg-zinc-200 relative"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg><span class="absolute top-1 right-1 bg-red-600 text-white text-xs rounded-full px-1.5 py-0.5">9+</span></button></div>
+                <div class="relative"><button id="profile-menu-button" class="flex items-center"><img src="https://placehold.co/40x40/7c3aed/ffffff?text=R" alt="User Avatar" class="h-8 w-8 rounded-full cursor-pointer"></button><div id="profile-menu" class="hidden absolute top-10 right-0 bg-white rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 w-80 z-50 py-2"><div class="flex items-center space-x-4 px-4 py-2 border-b"><img src="https://placehold.co/40x40/7c3aed/ffffff?text=R" alt="User Avatar" class="h-10 w-10 rounded-full"><div><div class="font-semibold">Ronav Rahul</div><div class="text-sm text-zinc-600">@ronavrahul</div><a href="#" id="view-channel-link" class="text-sm text-blue-600 hover:underline mt-1 block">View your channel</a></div></div></div></div>
             </div>
         </header>
 
-        <!-- Main Content Area -->
-        <div class="flex flex-1 overflow-hidden">
-            <!-- SIDEBAR SECTION -->
-            <aside class="w-60 bg-white p-2 flex-shrink-0 hidden md:block">
+        <!-- Main Content Wrapper -->
+        <div id="content-wrapper" class="flex-1 flex overflow-hidden">
+            <!-- SIDEBAR -->
+            <aside id="sidebar" class="w-60 bg-white p-2 flex-shrink-0 hidden md:block">
                  <nav>
                     <ul>
-                        <!-- Sidebar items -->
-                        <li class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer bg-zinc-100 font-bold">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
-                            <span class="font-medium">Home</span>
-                        </li>
-                        <li class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                           </svg>
-                            <span class="font-medium">Shorts</span>
-                        </li>
-                        <li class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            <span class="font-medium">Subscriptions</span>
-                        </li>
+                        <li id="home-button" class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer bg-zinc-100 font-bold"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg><span class="font-medium">Home</span></li>
+                        <li id="subscriptions-button" class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg><span class="font-medium">Subscriptions</span></li>
                     </ul>
-                    <hr class="my-4 border-zinc-200">
-                    <ul>
-                        <li class="px-2 py-1 text-lg font-semibold">You ></li>
-                         <li class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            <span class="font-medium">History</span>
-                        </li>
-                         <li class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" /></svg>
-                           <span class="font-medium">Playlists</span>
-                        </li>
-                        <li class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                           <span class="font-medium">Your videos</span>
-                        </li>
-                        <li class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                           <span class="font-medium">Watch later</span>
-                        </li>
-                         <li class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.085a2 2 0 00-1.736.93L5.5 8m7 2H5M5 8h2m7 2h2" /></svg>
-                            <span class="font-medium">Liked videos</span>
-                        </li>
-                    </ul>
-                </nav>
+                 </nav>
             </aside>
 
-            <!-- Main content column -->
-            <div class="flex-1 flex flex-col overflow-hidden">
-                <!-- Category Filters -->
-                <div class="bg-white px-4 py-3 border-b border-zinc-200 flex-shrink-0">
-                    <div class="flex space-x-3 overflow-x-auto no-scrollbar">
-                        <button class="category-pill active px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">All</button>
-                        <button class="category-pill bg-zinc-200 text-zinc-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">Music</button>
-                        <button class="category-pill bg-zinc-200 text-zinc-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">News</button>
-                        <button class="category-pill bg-zinc-200 text-zinc-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">Indian pop music</button>
-                        <button class="category-pill bg-zinc-200 text-zinc-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">Mixes</button>
-                        <button class="category-pill bg-zinc-200 text-zinc-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">T-Series</button>
-                        <button class="category-pill bg-zinc-200 text-zinc-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">Gaming</button>
-                        <button class="category-pill bg-zinc-200 text-zinc-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">Live</button>
-                    </div>
+            <!-- PAGE CONTENT AREA -->
+            <div id="page-content" class="flex-1 overflow-y-auto">
+                <!-- HOME PAGE -->
+                <div id="home-page">
+                    <div class="sticky top-0 bg-white px-4 py-3 border-b border-zinc-200 z-10"><div class="flex space-x-3 overflow-x-auto no-scrollbar"><button class="category-pill active px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">All</button><button class="category-pill bg-zinc-200 text-zinc-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">Music</button><button class="category-pill bg-zinc-200 text-zinc-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">News</button><button class="category-pill bg-zinc-200 text-zinc-800 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">Indian pop music</button></div></div>
+                    <main class="p-4"><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
+                        <!-- Video Cards Start -->
+                        <div class="video-card cursor-pointer" data-video-id="1"><div class="relative"><img src="https://placehold.co/400x225/eab308/000000?text=Prashant+Kishor" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">32:24</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/4f46e5/ffffff?text=TK" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">FULL STORY of Prashant Kishor</h3><p class="text-sm text-zinc-600">Tarun Kumar Kedia</p><p class="text-sm text-zinc-600">199K views &bull; 4 days ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="2"><div class="relative"><img src="https://placehold.co/400x225/ec4899/ffffff?text=Sharon+BIHAR" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">10:45</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/059669/ffffff?text=SV" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">SHARON FROM BIHAR (part 1)</h3><p class="text-sm text-zinc-600">Sharon Verma</p><p class="text-sm text-zinc-600">1.1M views &bull; 2 days ago</p></div></div></div>
+                        <!-- ... more 14 video cards ... -->
+                        <div class="video-card cursor-pointer" data-video-id="3"><div class="relative"><img src="https://placehold.co/400x225/f97316/ffffff?text=DEFENDER" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">18:12</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/3b82f6/ffffff?text=A" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">The Ultimate Off-Roader?</h3><p class="text-sm text-zinc-600">Auto Hub</p><p class="text-sm text-zinc-600">540K views &bull; 1 week ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="4"><div class="relative"><img src="https://placehold.co/400x225/8b5cf6/ffffff?text=RADHA+RAMAN" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">4:20</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/d946ef/ffffff?text=M" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">Radha Raman | Lofi Mix</h3><p class="text-sm text-zinc-600">Lofi Beats</p><p class="text-sm text-zinc-600">2.3M views &bull; 1 month ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="5"><div class="relative"><img src="https://placehold.co/400x225/6366f1/ffffff?text=Trekking+Himalayas" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">25:00</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/14b8a6/ffffff?text=T" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">My First Himalayan Trek</h3><p class="text-sm text-zinc-600">Travel Stories</p><p class="text-sm text-zinc-600">88K views &bull; 3 days ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="6"><div class="relative"><img src="https://placehold.co/400x225/10b981/ffffff?text=Coding+Tutorial" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">1:15:30</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/f43f5e/ffffff?text=C" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">Learn JavaScript in 2025</h3><p class="text-sm text-zinc-600">Code Master</p><p class="text-sm text-zinc-600">3M views &bull; 6 months ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="7"><div class="relative"><img src="https://placehold.co/400x225/64748b/ffffff?text=Unboxing" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">12:54</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/334155/ffffff?text=T" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">Unboxing the NEWEST Smartphone!</h3><p class="text-sm text-zinc-600">Tech Guru</p><p class="text-sm text-zinc-600">987K views &bull; 5 days ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="8"><div class="relative"><img src="https://placehold.co/400x225/ef4444/ffffff?text=Cooking+Show" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">22:15</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/f59e0b/ffffff?text=CS" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">How to make the perfect Pizza</h3><p class="text-sm text-zinc-600">Chef's Kitchen</p><p class="text-sm text-zinc-600">750K views &bull; 2 weeks ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="9"><div class="relative"><img src="https://placehold.co/400x225/22d3ee/000000?text=DIY+Crafts" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">08:40</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/a78bfa/ffffff?text=D" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">5 Easy DIY Room Decor Ideas</h3><p class="text-sm text-zinc-600">Crafty Creations</p><p class="text-sm text-zinc-600">1.2M views &bull; 1 month ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="10"><div class="relative"><img src="https://placehold.co/400x225/34d399/ffffff?text=Finance+Tips" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">15:00</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/facc15/000000?text=FT" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">Investing for Beginners in India</h3><p class="text-sm text-zinc-600">Money Matters</p><p class="text-sm text-zinc-600">450K views &bull; 3 weeks ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="11"><div class="relative"><img src="https://placehold.co/400x225/f87171/ffffff?text=Podcast" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">09:18</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/fb923c/ffffff?text=P" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">The Funniest Moments</h3><p class="text-sm text-zinc-600">The Talk Show</p><p class="text-sm text-zinc-600">95K views &bull; 6 days ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="12"><div class="relative"><img src="https://placehold.co/400x225/38bdf8/ffffff?text=Tech+Review" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">11:35</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/a8a29e/ffffff?text=TR" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">New Budget Laptop Review!</h3><p class="text-sm text-zinc-600">Gadget Geek</p><p class="text-sm text-zinc-600">312K views &bull; 1 week ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="13"><div class="relative"><img src="https://placehold.co/400x225/c084fc/ffffff?text=Workout" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">30:00</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/4ade80/ffffff?text=F" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">30-Min Full Body HIIT Workout</h3><p class="text-sm text-zinc-600">Fit Nation</p><p class="text-sm text-zinc-600">5M views &bull; 8 months ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="14"><div class="relative"><img src="https://placehold.co/400x225/94a3b8/000000?text=History" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">45:10</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/e11d48/ffffff?text=H" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">The Mauryan Empire: Untold Story</h3><p class="text-sm text-zinc-600">History Uncovered</p><p class="text-sm text-zinc-600">890K views &bull; 2 months ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="15"><div class="relative"><img src="https://placehold.co/400x225/f472b6/ffffff?text=Standup" class="w-full rounded-xl"><span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">07:55</span></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/581c87/ffffff?text=C" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">My School Life Was Weird</h3><p class="text-sm text-zinc-600">Comedy Central</p><p class="text-sm text-zinc-600">2.5M views &bull; 3 weeks ago</p></div></div></div>
+                        <div class="video-card cursor-pointer" data-video-id="16"><div class="relative"><img src="https://placehold.co/400x225/0ea5e9/ffffff?text=Google+Chrome" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/22c55e/ffffff?text=G" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">Switch to Chrome for a great browsing experience.</h3><p class="text-sm text-zinc-600">Google Chrome <span class="bg-zinc-200 text-zinc-700 px-1.5 py-0.5 rounded-md text-xs">Sponsored</span></p></div></div></div>
+                        <!-- Video Cards End -->
+                    </div></main>
                 </div>
+                <!-- CHANNEL PAGE -->
+                <div id="channel-page" class="hidden"><!-- Channel Page Content --></div>
+                <!-- SUBSCRIPTIONS PAGE -->
+                <div id="subscriptions-page" class="hidden"><!-- Subscriptions Page Content --></div>
 
-                <!-- Scrollable Video Grid Area -->
-                <main class="flex-1 overflow-y-auto p-4 pb-20 md:pb-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
-                        <!-- Video Card 1 -->
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/eab308/000000?text=Prashant+Kishor" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">32:24</span>
+                <!-- VIDEO WATCH PAGE (Initially Hidden) -->
+                <div id="watch-page" class="hidden bg-gray-100">
+                    <div class="p-4 lg:p-6 flex flex-col lg:flex-row gap-6">
+                        <!-- Main Content: Player and Details -->
+                        <div class="lg:w-2/3">
+                            <!-- Video Player -->
+                            <div class="aspect-video bg-black rounded-xl overflow-hidden">
+                                 <!-- Placeholder for video -->
+                                <img src="https://placehold.co/1280x720/000000/ffffff?text=Video+Player" class="w-full h-full object-cover">
                             </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/4f46e5/ffffff?text=TK" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">FULL STORY of Prashant Kishor</h3>
-                                    <p class="text-sm text-zinc-600">Tarun Kumar Kedia</p>
-                                    <p class="text-sm text-zinc-600">199K views &bull; 4 days ago</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Video Card 2 -->
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                 <img src="https://placehold.co/400x225/ec4899/ffffff?text=Sharon+BIHAR" alt="Video Thumbnail" class="w-full rounded-xl">
-                                 <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">10:45</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/059669/ffffff?text=SV" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">SHARON FROM BIHAR (part 1): Bihar & Bad Driving | Stand-up comedy</h3>
-                                    <p class="text-sm text-zinc-600">Sharon Verma</p>
-                                    <p class="text-sm text-zinc-600">1.1M views &bull; 2 days ago</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Video Card 3 -->
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/f97316/ffffff?text=DEFENDER" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">18:12</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/3b82f6/ffffff?text=A" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">The Ultimate Off-Roader? Land Rover Defender Review</h3>
-                                    <p class="text-sm text-zinc-600">Auto Hub</p>
-                                    <p class="text-sm text-zinc-600">540K views &bull; 1 week ago</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Video Card 4 -->
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                 <img src="https://placehold.co/400x225/0ea5e9/ffffff?text=Google+Chrome" alt="Video Thumbnail" class="w-full rounded-xl">
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/22c55e/ffffff?text=G" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">Switch to Chrome for a great browsing experience.</h3>
-                                    <p class="text-sm text-zinc-600">Google Chrome <span class="bg-zinc-200 text-zinc-700 px-1.5 py-0.5 rounded-md text-xs">Sponsored</span></p>
-                                    <div class="mt-2">
-                                        <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded-full text-sm">Download</button>
+                            <!-- Video Info -->
+                            <div class="mt-4">
+                                <h1 id="watch-video-title" class="text-xl font-bold">Video Title Will Appear Here</h1>
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-3">
+                                    <div class="flex items-center space-x-3">
+                                        <img id="watch-channel-avatar" src="https://placehold.co/40x40/cccccc/ffffff?text=C" class="h-10 w-10 rounded-full">
+                                        <div>
+                                            <div id="watch-channel-name" class="font-semibold">Channel Name</div>
+                                            <div class="text-sm text-zinc-600">1.2M subscribers</div>
+                                        </div>
+                                        <button class="bg-black text-white font-semibold py-2 px-4 rounded-full text-sm ml-4">Subscribe</button>
+                                    </div>
+                                    <div class="flex items-center space-x-2 mt-4 sm:mt-0">
+                                        <button class="flex items-center bg-zinc-200 hover:bg-zinc-300 rounded-full px-4 py-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.787l.09.044a2 2 0 001.804-1.229L9.75 14.25a2 2 0 01.95-1.436l.25-.167a2 2 0 001.05-1.787V9.5a2 2 0 00-2-2h-.5a2 2 0 00-2 2v.833z" /></svg> 15K</button>
+                                        <button class="flex items-center bg-zinc-200 hover:bg-zinc-300 rounded-full px-4 py-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.106-1.787l-.09-.044a2 2 0 00-1.804 1.229L10.25 5.75a2 2 0 01-.95 1.436l-.25.167a2 2 0 00-1.05 1.787V10.5a2 2 0 002 2h.5a2 2 0 002-2v-.833z" /></svg></button>
+                                        <button class="flex items-center bg-zinc-200 hover:bg-zinc-300 rounded-full px-4 py-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" /></svg> Share</button>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Description Box -->
+                            <div class="bg-zinc-200 p-4 rounded-xl mt-4 text-sm"><p class="font-semibold">199K views  4 days ago</p><p>Here is a description of the video. It can be a few lines long and give more context about what the viewer is watching.</p></div>
                         </div>
-
-                        <!-- Video Cards 5-8 -->
-                         <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/8b5cf6/ffffff?text=RADHA+RAMAN" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">4:20</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/d946ef/ffffff?text=M" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">Radha Raman | Lofi Mix | Soulful Music</h3>
-                                    <p class="text-sm text-zinc-600">Lofi Beats</p>
-                                    <p class="text-sm text-zinc-600">2.3M views &bull; 1 month ago</p>
-                                </div>
+                        <!-- Suggested Videos -->
+                        <div class="lg:w-1/3">
+                            <h2 class="font-bold mb-3">Up next</h2>
+                            <div class="space-y-3">
+                                <!-- Suggested Video 1 -->
+                                <div class="flex gap-3 cursor-pointer"><div class="w-40 flex-shrink-0"><img src="https://placehold.co/160x90/64748b/ffffff?text=Suggested" class="w-full rounded-lg"></div><div><h3 class="text-sm font-semibold leading-tight">Another Interesting Video Title Goes Here</h3><p class="text-xs text-zinc-600 mt-1">Another Channel</p><p class="text-xs text-zinc-600">1M views &bull; 1 week ago</p></div></div>
+                                <!-- Suggested Video 2 -->
+                                <div class="flex gap-3 cursor-pointer"><div class="w-40 flex-shrink-0"><img src="https://placehold.co/160x90/f87171/ffffff?text=Suggested" class="w-full rounded-lg"></div><div><h3 class="text-sm font-semibold leading-tight">You Won't Believe What Happens Next</h3><p class="text-xs text-zinc-600 mt-1">Cool Vlogger</p><p class="text-xs text-zinc-600">500K views &bull; 2 days ago</p></div></div>
                             </div>
                         </div>
-                        
-                         <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                 <img src="https://placehold.co/400x225/6366f1/ffffff?text=Trekking+Himalayas" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">25:00</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/14b8a6/ffffff?text=T" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">My First Himalayan Trek | A Journey to Remember</h3>
-                                    <p class="text-sm text-zinc-600">Travel Stories</p>
-                                    <p class="text-sm text-zinc-600">88K views &bull; 3 days ago</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/10b981/ffffff?text=Coding+Tutorial" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">1:15:30</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/f43f5e/ffffff?text=C" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">Learn JavaScript in 2025 - Full Course for Beginners</h3>
-                                    <p class="text-sm text-zinc-600">Code Master</p>
-                                    <p class="text-sm text-zinc-600">3M views &bull; 6 months ago</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/64748b/ffffff?text=Unboxing" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">12:54</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/334155/ffffff?text=T" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">Unboxing the NEWEST Smartphone! Is it worth it?</h3>
-                                    <p class="text-sm text-zinc-600">Tech Guru</p>
-                                    <p class="text-sm text-zinc-600">987K views &bull; 5 days ago</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- NEW Video Cards 9-16 -->
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/ef4444/ffffff?text=Cooking+Show" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">22:15</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/f59e0b/ffffff?text=CS" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">How to make the perfect Pizza at home</h3>
-                                    <p class="text-sm text-zinc-600">Chef's Kitchen</p>
-                                    <p class="text-sm text-zinc-600">750K views &bull; 2 weeks ago</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/22d3ee/000000?text=DIY+Crafts" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">08:40</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/a78bfa/ffffff?text=D" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">5 Easy DIY Room Decor Ideas</h3>
-                                    <p class="text-sm text-zinc-600">Crafty Creations</p>
-                                    <p class="text-sm text-zinc-600">1.2M views &bull; 1 month ago</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/34d399/ffffff?text=Finance+Tips" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">15:00</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/facc15/000000?text=FT" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">Investing for Beginners in India</h3>
-                                    <p class="text-sm text-zinc-600">Money Matters</p>
-                                    <p class="text-sm text-zinc-600">450K views &bull; 3 weeks ago</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/f87171/ffffff?text=Podcast+Highlights" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">09:18</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/fb923c/ffffff?text=P" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">The Funniest Moments from Our Latest Podcast</h3>
-                                    <p class="text-sm text-zinc-600">The Talk Show</p>
-                                    <p class="text-sm text-zinc-600">95K views &bull; 6 days ago</p>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/38bdf8/ffffff?text=Tech+Review" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">11:35</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/a8a29e/ffffff?text=TR" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">New Budget Laptop Review!</h3>
-                                    <p class="text-sm text-zinc-600">Gadget Geek</p>
-                                    <p class="text-sm text-zinc-600">312K views &bull; 1 week ago</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/c084fc/ffffff?text=Workout" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">30:00</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/4ade80/ffffff?text=F" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">30-Min Full Body HIIT Workout</h3>
-                                    <p class="text-sm text-zinc-600">Fit Nation</p>
-                                    <p class="text-sm text-zinc-600">5M views &bull; 8 months ago</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/94a3b8/000000?text=History" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">45:10</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/e11d48/ffffff?text=H" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">The Mauryan Empire: An Untold Story</h3>
-                                    <p class="text-sm text-zinc-600">History Uncovered</p>
-                                    <p class="text-sm text-zinc-600">890K views &bull; 2 months ago</p>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="flex flex-col space-y-2">
-                            <div class="relative">
-                                <img src="https://placehold.co/400x225/f472b6/ffffff?text=Standup" alt="Video Thumbnail" class="w-full rounded-xl">
-                                <span class="absolute bottom-1 right-1 bg-black bg-opacity-75 text-white text-xs px-1.5 py-0.5 rounded">07:55</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <img src="https://placehold.co/40x40/581c87/ffffff?text=C" alt="Channel" class="h-9 w-9 rounded-full">
-                                <div>
-                                    <h3 class="font-medium text-base leading-tight">My School Life Was Weird | Standup Comedy</h3>
-                                    <p class="text-sm text-zinc-600">Comedy Central</p>
-                                    <p class="text-sm text-zinc-600">2.5M views &bull; 3 weeks ago</p>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                </main>
+                </div>
+
             </div>
         </div>
     </div>
-
+    
     <!-- BOTTOM NAVIGATION (Mobile Only) -->
-    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 flex justify-around py-1 z-40">
-        <!-- Bottom Nav items remain the same -->
-        <a href="#" class="flex flex-col items-center justify-center text-center p-2 w-full text-red-600">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/>
-            </svg>
-            <span class="text-xs">Home</span>
-        </a>
-        <a href="#" class="flex flex-col items-center justify-center text-center p-2 w-full text-zinc-600 hover:bg-zinc-100">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            <span class="text-xs">Shorts</span>
-        </a>
-        <a href="#" class="flex flex-col items-center justify-center text-center p-2 w-full text-zinc-600 hover:bg-zinc-100">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        </a>
-        <a href="#" class="flex flex-col items-center justify-center text-center p-2 w-full text-zinc-600 hover:bg-zinc-100">
-             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <span class="text-xs">Subscriptions</span>
-        </a>
-        <a href="#" class="flex flex-col items-center justify-center text-center p-2 w-full text-zinc-600 hover:bg-zinc-100">
-            <img src="https://placehold.co/40x40/7c3aed/ffffff?text=R" alt="User Avatar" class="h-6 w-6 rounded-full mb-1">
-            <span class="text-xs">You</span>
-        </a>
-    </nav>
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 flex justify-around py-1 z-40"><!-- Bottom Nav Content --></nav>
     
     <script>
-        // JavaScript for Profile Menu Toggle
-        const profileMenuButton = document.getElementById('profile-menu-button');
-        const profileMenu = document.getElementById('profile-menu');
+        // DOM Elements
+        const homeButton = document.getElementById('home-button');
+        const logoButton = document.getElementById('logo-button');
+        const subscriptionsButton = document.getElementById('subscriptions-button');
+        const viewChannelLink = document.getElementById('view-channel-link');
 
-        profileMenuButton.addEventListener('click', (event) => {
-            // Stop the event from bubbling up to the window listener
-            event.stopPropagation();
-            profileMenu.classList.toggle('hidden');
-        });
+        const homePage = document.getElementById('home-page');
+        const channelPage = document.getElementById('channel-page');
+        const subscriptionsPage = document.getElementById('subscriptions-page');
+        const watchPage = document.getElementById('watch-page');
+        const allPages = [homePage, channelPage, subscriptionsPage, watchPage];
 
-        // Close the dropdown if clicking outside of it
-        window.addEventListener('click', (event) => {
-            if (!profileMenu.classList.contains('hidden')) {
-                profileMenu.classList.add('hidden');
+        const sidebar = document.getElementById('sidebar');
+        const contentWrapper = document.getElementById('content-wrapper');
+
+        // --- Page Navigation ---
+        function showPage(pageToShow) {
+            allPages.forEach(page => page.classList.add('hidden'));
+            if (pageToShow) {
+                pageToShow.classList.remove('hidden');
+                // Hide sidebar on watch page for more space
+                if (pageToShow === watchPage) {
+                    sidebar.classList.add('hidden');
+                    document.body.classList.add('overflow-hidden'); // Prevent body scroll
+                } else {
+                    sidebar.classList.remove('hidden');
+                     document.body.classList.remove('overflow-hidden');
+                }
             }
+            if(document.getElementById('page-content')) {
+                document.getElementById('page-content').scrollTop = 0;
+            }
+        }
+        
+        homeButton.addEventListener('click', () => showPage(homePage));
+        logoButton.addEventListener('click', () => showPage(homePage));
+        subscriptionsButton.addEventListener('click', () => showPage(subscriptionsPage));
+        viewChannelLink.addEventListener('click', (e) => { e.preventDefault(); showPage(channelPage); });
+
+        // --- Video Card Click Handling ---
+        const videoCards = document.querySelectorAll('.video-card');
+        videoCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Get data from the clicked card (using dummy data for now)
+                const videoTitle = card.querySelector('h3').textContent;
+                const channelName = card.querySelector('p').textContent;
+                
+                // Update the watch page content
+                document.getElementById('watch-video-title').textContent = videoTitle;
+                document.getElementById('watch-channel-name').textContent = channelName;
+                
+                // Show the watch page
+                showPage(watchPage);
+            });
         });
 
-        // Prevent the dropdown from closing when clicking inside it
-        profileMenu.addEventListener('click', (event) => {
-            event.stopPropagation();
-        });
     </script>
 </body>
 </html>
