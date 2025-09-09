@@ -82,30 +82,23 @@
         document.addEventListener('DOMContentLoaded', () => {
             // --- DATA ---
             const videoData = [
-                { id:1, thumb: 'https://placehold.co/400x225/eab308/000000?text=Prashant+Kishor', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/4f46e5/ffffff?text=TK', title: 'FULL STORY of Prashant Kishor', channelName: 'Tarun Kumar Kedia' },
-                { id:2, thumb: 'https://placehold.co/400x225/ec4899/ffffff?text=Sharon+BIHAR', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/059669/ffffff?text=SV', title: 'SHARON FROM BIHAR (part 1)', channelName: 'Sharon Verma' },
-                { id:3, thumb: 'https://placehold.co/400x225/f97316/ffffff?text=DEFENDER', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/3b82f6/ffffff?text=A', title: 'The Ultimate Off-Roader?', channelName: 'Auto Hub' },
-                { id:4, thumb: 'https://placehold.co/400x225/8b5cf6/ffffff?text=RADHA+RAMAN', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/d946ef/ffffff?text=M', title: 'Radha Raman | Lofi Mix', channelName: 'Lofi Beats' },
-                { id:5, thumb: 'https://placehold.co/400x225/6366f1/ffffff?text=Trekking+Himalayas', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/14b8a6/ffffff?text=T', title: 'My First Himalayan Trek', channelName: 'Travel Stories' },
-                { id:6, thumb: 'https://placehold.co/400x225/10b981/ffffff?text=Coding+Tutorial', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/f43f5e/ffffff?text=C', title: 'Learn JavaScript in 2025', channelName: 'Code Master' },
-                { id:7, thumb: 'https://placehold.co/400x225/64748b/ffffff?text=Unboxing', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/334155/ffffff?text=T', title: 'Unboxing the NEWEST Smartphone!', channelName: 'Tech Guru' },
-                { id:8, thumb: 'https://placehold.co/400x225/ef4444/ffffff?text=Cooking+Show', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/f59e0b/ffffff?text=CS', title: 'How to make the perfect Pizza', channelName: "Chef's Kitchen" },
-                { id:9, thumb: 'https://placehold.co/400x225/22d3ee/000000?text=DIY+Crafts', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/a78bfa/ffffff?text=D', title: '5 Easy DIY Room Decor Ideas', channelName: 'Crafty Creations' },
-                { id:10, thumb: 'https://placehold.co/400x225/34d399/ffffff?text=Finance+Tips', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/facc15/000000?text=FT', title: 'Investing for Beginners in India', channelName: 'Money Matters' },
-                { id:11, thumb: 'https://placehold.co/400x225/f87171/ffffff?text=Podcast', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/fb923c/ffffff?text=P', title: 'The Funniest Moments', channelName: 'The Talk Show' },
-                { id:12, thumb: 'https://placehold.co/400x225/38bdf8/ffffff?text=Tech+Review', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/a8a29e/ffffff?text=TR', title: 'New Budget Laptop Review!', channelName: 'Gadget Geek' },
-                { id:13, thumb: 'https://placehold.co/400x225/c084fc/ffffff?text=Workout', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/4ade80/ffffff?text=F', title: '30-Min Full Body HIIT Workout', channelName: 'Fit Nation' },
-                { id:14, thumb: 'https://placehold.co/400x225/94a3b8/000000?text=History', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/e11d48/ffffff?text=H', title: 'The Mauryan Empire: Untold Story', channelName: 'History Uncovered' },
-                { id:15, thumb: 'https://placehold.co/400x225/f472b6/ffffff?text=Standup', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/581c87/ffffff?text=C', title: 'My School Life Was Weird', channelName: 'Comedy Central' },
-                { id:16, thumb: 'https://placehold.co/400x225/0ea5e9/ffffff?text=Google+Chrome', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/22c55e/ffffff?text=G', title: 'Switch to Chrome for a great browsing experience.', channelName: 'Google Chrome' },
+                { id: 1, thumb: 'https://placehold.co/400x225/eab308/000000?text=Animated+Rabbit', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/4f46e5/ffffff?text=TK', title: 'A Story of a Rabbit', channelName: 'Animation Studios' },
+                { id: 2, thumb: 'https://placehold.co/400x225/ec4899/ffffff?text=Robot+Story', previewVid: 'https://test-videos.co.uk/vids/elephantsdream/mp4/h264/360/Elephants_Dream_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/059669/ffffff?text=SV', title: 'The Elephant\'s Dream', channelName: 'Sci-Fi World' },
+                { id: 3, thumb: 'https://placehold.co/400x225/f97316/ffffff?text=Fantasy+Adventure', previewVid: 'https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/3b82f6/ffffff?text=A', title: 'Sintel: A Dragon\'s Tale', channelName: 'Fantasy Epics' },
+                { id: 4, thumb: 'https://placehold.co/400x225/8b5cf6/ffffff?text=Peaceful+Lake', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-beautiful-aerial-shot-of-a-lake-in-the-mountains-24855-small.mp4', channelAvatar: 'https://placehold.co/40x40/d946ef/ffffff?text=M', title: 'Peaceful Mountain Lake', channelName: 'Nature Vibes' },
+                { id: 5, thumb: 'https://placehold.co/400x225/6366f1/ffffff?text=Ocean+Waves', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-sea-1164-small.mp4', channelAvatar: 'https://placehold.co/40x40/14b8a6/ffffff?text=T', title: 'Relaxing Ocean Waves', channelName: 'SeaScapes' },
+                { id: 6, thumb: 'https://placehold.co/400x225/10b981/ffffff?text=Autumn+Forest', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-small.mp4', channelAvatar: 'https://placehold.co/40x40/f43f5e/ffffff?text=C', title: 'Sunlight in the Forest', channelName: 'Explore Outdoors' },
+                { id: 7, thumb: 'https://placehold.co/400x225/64748b/ffffff?text=City+Night', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-highway-in-the-dark-with-vehicle-lights-44656-small.mp4', channelAvatar: 'https://placehold.co/40x40/334155/ffffff?text=T', title: 'Night Drive in the City', channelName: 'Urban Life' },
+                { id: 8, thumb: 'https://placehold.co/400x225/ef4444/ffffff?text=Coffee+Time', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-making-a-cappuccino-2216-small.mp4', channelAvatar: 'https://placehold.co/40x40/f59e0b/ffffff?text=CS', title: 'Making the Perfect Cappuccino', channelName: "Cafe Corner" },
             ];
+            const fullVideoData = [...videoData, ...videoData.map(v => ({...v, id: v.id + 8}))]; // Duplicate for 16 videos
 
             // --- TEMPLATES ---
-            const createVideoCardTemplate = (video) => `<div class="video-card cursor-pointer group" data-video-id="${video.id}"><div class="relative rounded-xl overflow-hidden"><img src="${video.thumb}" class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"><video src="${video.previewVid}" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100" muted loop playsinline></video></div><div class="flex space-x-3 mt-2"><img src="${video.channelAvatar}" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">${video.title}</h3><p class="text-sm text-zinc-600">${video.channelName}</p></div></div></div>`;
+            const createVideoCardTemplate = (video) => `<div class="video-card cursor-pointer group" data-video-id="${video.id}"><div class="relative rounded-xl overflow-hidden aspect-video"><img src="${video.thumb}" class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"><video src="${video.previewVid}" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100" muted loop playsinline></video></div><div class="flex space-x-3 mt-2"><img src="${video.channelAvatar}" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">${video.title}</h3><p class="text-sm text-zinc-600">${video.channelName}</p></div></div></div>`;
             const homePageTemplate = (videos) => `<div class="sticky top-0 bg-white px-4 py-3 border-b border-zinc-200 z-10"><div class="flex space-x-3 overflow-x-auto no-scrollbar"><button class="category-pill active px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">All</button><button class="category-pill bg-zinc-100 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">Music</button></div></div><main class="p-4"><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">${videos.map(createVideoCardTemplate).join('')}</div></main>`;
-            const channelPageTemplate = `<div class="h-40 sm:h-56 bg-zinc-200"><img src="https://placehold.co/1280x320/64748b/ffffff?text=Channel+Banner" class="w-full h-full object-cover"></div><div class="px-4 sm:px-8 bg-white"><div class="flex flex-col sm:flex-row items-start py-4"><img src="https://placehold.co/128x128/7c3aed/ffffff?text=R" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-white -mt-12 sm:-mt-16 flex-shrink-0"><div class="mt-4 sm:mt-0 sm:ml-6 flex-grow"><h1 class="text-3xl font-bold">Ronav Rahul</h1><div class="flex items-center text-sm text-zinc-600 space-x-4 mt-1"><span>@ronavrahul</span><span>1.2M subscribers</span><span>150 videos</span></div></div></div></div><main class="p-4"><h2 class="text-xl font-bold mb-4">Uploads</h2><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">${videoData.slice(0, 4).map(createVideoCardTemplate).join('')}</div></main>`;
+            const channelPageTemplate = `<div class="h-40 sm:h-56 bg-zinc-200"><img src="https://placehold.co/1280x320/64748b/ffffff?text=Channel+Banner" class="w-full h-full object-cover"></div><div class="px-4 sm:px-8 bg-white"><div class="flex flex-col sm:flex-row items-start py-4"><img src="https://placehold.co/128x128/7c3aed/ffffff?text=R" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-white -mt-12 sm:-mt-16 flex-shrink-0"><div class="mt-4 sm:mt-0 sm:ml-6 flex-grow"><h1 class="text-3xl font-bold">Ronav Rahul</h1><div class="flex items-center text-sm text-zinc-600 space-x-4 mt-1"><span>@ronavrahul</span><span>1.2M subscribers</span><span>150 videos</span></div></div></div></div><main class="p-4"><h2 class="text-xl font-bold mb-4">Uploads</h2><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">${fullVideoData.slice(0, 4).map(createVideoCardTemplate).join('')}</div></main>`;
             const subscriptionsPageTemplate = `<main class="p-4 sm:p-8"><h1 class="text-2xl font-bold mb-6">Latest from your subscriptions</h1></main>`;
-            const createSuggestedVideoTemplate = (video) => `<div class="video-card cursor-pointer group flex gap-3" data-video-id="${video.id}"><div class="w-40 flex-shrink-0 relative rounded-lg overflow-hidden"><img src="${video.thumb}" class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"><video src="${video.previewVid}" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100" muted loop playsinline></video></div><div><h3 class="text-sm font-semibold leading-tight">${video.title}</h3><p class="text-xs text-zinc-600 mt-1">${video.channelName}</p></div></div>`;
+            const createSuggestedVideoTemplate = (video) => `<div class="video-card cursor-pointer group flex gap-3" data-video-id="${video.id}"><div class="w-40 flex-shrink-0 relative rounded-lg overflow-hidden aspect-video"><img src="${video.thumb}" class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"><video src="${video.previewVid}" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100" muted loop playsinline></video></div><div><h3 class="text-sm font-semibold leading-tight">${video.title}</h3><p class="text-xs text-zinc-600 mt-1">${video.channelName}</p></div></div>`;
             const watchPageTemplate = (video, suggestions) => `
                 <div class="p-0 md:p-6 flex flex-col lg:flex-row gap-6">
                     <div class="flex-1">
@@ -173,16 +166,18 @@
                     let playTimeout;
                     const video = card.querySelector('video');
                     const videoId = parseInt(card.dataset.videoId);
-                    const cardData = videoData.find(v => v.id === videoId);
+                    const cardData = fullVideoData.find(v => v.id === videoId);
+
+                    if(!cardData) return;
 
                     card.addEventListener('mouseenter', () => { playTimeout = setTimeout(() => { if(video) video.play().catch(e => {}); }, 500); });
                     card.addEventListener('mouseleave', () => { clearTimeout(playTimeout); if (video) { video.pause(); video.currentTime = 0; } });
-
+                    
                     card.addEventListener('click', () => {
                         clearTimeout(playTimeout);
                         if (video) { video.pause(); video.currentTime = 0; }
                         
-                        const suggestions = videoData.filter(v => v.id !== videoId);
+                        const suggestions = fullVideoData.filter(v => v.id !== videoId);
                         showPage('watch', { video: cardData, suggestions });
                          setTimeout(() => {
                             const subBtn = document.getElementById('subscribe-button');
@@ -200,7 +195,11 @@
 
             function handleSearch() {
                 const searchTerm = searchInput.value.toLowerCase();
-                const filteredVideos = videoData.filter(video => 
+                if (!searchTerm) {
+                    showPage('home', { videos: fullVideoData });
+                    return;
+                }
+                const filteredVideos = fullVideoData.filter(video => 
                     video.title.toLowerCase().includes(searchTerm) || 
                     video.channelName.toLowerCase().includes(searchTerm)
                 );
@@ -208,16 +207,16 @@
             }
             
             // --- Event Listeners ---
-            logoButton.addEventListener('click', () => showPage('home', { videos: videoData }));
-            homeButton.addEventListener('click', () => showPage('home', { videos: videoData }));
-            backButton.addEventListener('click', () => showPage('home', { videos: videoData }));
+            logoButton.addEventListener('click', () => showPage('home', { videos: fullVideoData }));
+            homeButton.addEventListener('click', () => showPage('home', { videos: fullVideoData }));
+            backButton.addEventListener('click', () => showPage('home', { videos: fullVideoData }));
             subscriptionsButton.addEventListener('click', () => showPage('subscriptions'));
             viewChannelLink.addEventListener('click', (e) => { e.preventDefault(); showPage('channel'); closeAllMenus(); });
             searchButton.addEventListener('click', handleSearch);
             searchInput.addEventListener('keyup', (e) => { if(e.key === 'Enter') handleSearch(); });
             
             document.querySelectorAll('.mobile-nav-link').forEach(link => {
-                link.addEventListener('click', e => { e.preventDefault(); showPage(link.dataset.page, { videos: videoData }); });
+                link.addEventListener('click', e => { e.preventDefault(); showPage(link.dataset.page, { videos: fullVideoData }); });
             });
 
             function closeAllMenus() {
@@ -230,7 +229,7 @@
             window.addEventListener('click', () => closeAllMenus());
 
             // --- Initial Load ---
-            showPage('home', { videos: videoData });
+            showPage('home', { videos: fullVideoData });
         });
     </script>
 </body>
