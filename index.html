@@ -1,200 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZenTube</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Roboto', sans-serif; background: #fafafa; }
-    .category-pill.active { background: #dc2626; color: #fff; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenTube</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Roboto font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #f9f9f9; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        .category-pill.active { background-color: #0f0f0f; color: #ffffff; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body class="text-zinc-900">
-<div id="app" class="h-screen flex flex-col">
+<body class="text-black">
 
-  <!-- HEADER -->
-  <header class="bg-white flex justify-between px-4 py-2 shadow-sm">
-    <div class="flex items-center space-x-4">
-      <button id="sidebar-toggle" class="p-2 hover:bg-zinc-200 rounded-full">☰</button>
-      <div id="logo-button" class="cursor-pointer font-bold text-xl text-red-600">ZenTube</div>
-    </div>
-    <div class="hidden md:flex flex-1 justify-center">
-      <input type="text" placeholder="Search" class="border px-3 py-1 rounded-l-full border-zinc-300">
-      <button class="bg-zinc-100 px-4 py-1 rounded-r-full border border-l-0">🔍</button>
-    </div>
-    <div class="flex items-center space-x-3">
-      <button id="notification-button" class="p-2 hover:bg-zinc-200 rounded-full relative">🔔<span class="absolute top-0 right-0 text-xs bg-red-600 text-white px-1 rounded-full">9+</span></button>
-      <div class="relative">
-        <button id="profile-menu-button"><img src="https://placehold.co/40x40/7c3aed/fff?text=R" class="rounded-full"></button>
-        <div id="profile-menu" class="hidden absolute right-0 mt-2 bg-white rounded-lg shadow w-64">
-          <div class="p-3 border-b flex items-center space-x-3">
-            <img src="https://placehold.co/40x40/7c3aed/fff?text=R" class="rounded-full">
-            <div>
-              <p class="font-semibold">Ronav Rahul</p>
-              <p class="text-sm text-zinc-600">@ronavrahul</p>
+    <div id="app" class="h-screen w-full flex flex-col">
+        <!-- HEADER -->
+        <header id="main-header" class="bg-white flex-shrink-0 flex items-center justify-between px-2 sm:px-4 py-2 z-40 shadow-sm">
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <button id="back-button" class="p-2 rounded-full hover:bg-zinc-200 hidden"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
+                <button id="hamburger-button" class="p-2 rounded-full hover:bg-zinc-200"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button>
+                <div id="logo-button" class="flex items-center space-x-1 cursor-pointer">
+                    <svg class="h-7 w-7 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+                    <span class="text-xl font-semibold tracking-tighter">ZenTube</span>
+                </div>
             </div>
-          </div>
-          <button id="view-channel-link" class="block w-full text-left px-4 py-2 hover:bg-zinc-100">View your channel</button>
-          <button class="block w-full text-left px-4 py-2 hover:bg-zinc-100">Settings</button>
-          <button class="block w-full text-left px-4 py-2 hover:bg-zinc-100">Logout</button>
+            <div class="hidden md:flex flex-1 justify-center px-4 lg:px-16">
+                 <div class="w-full max-w-2xl flex items-center">
+                    <input type="text" placeholder="Search" class="w-full bg-transparent border border-zinc-300 rounded-l-full px-4 py-2 focus:outline-none focus:border-red-500">
+                    <button class="bg-zinc-100 border border-zinc-300 border-l-0 px-5 py-2 rounded-r-full hover:bg-zinc-200"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></button>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button id="mobile-search-button" class="p-2 rounded-full hover:bg-zinc-200 md:hidden"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></button>
+                <div class="relative">
+                    <button id="notification-button" class="p-2 rounded-full hover:bg-zinc-200 relative"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg><span class="absolute top-1 right-1 bg-red-600 text-white text-xs rounded-full px-1.5 py-0.5">3</span></button>
+                    <div id="notification-menu" class="hidden absolute top-12 right-0 bg-white rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 w-96 z-50 py-2"><div class="font-semibold px-4 py-2">Notifications</div><div class="flex items-start px-4 py-3 hover:bg-zinc-100 space-x-3"><img src="https://placehold.co/40x40/f43f5e/ffffff?text=C" class="h-10 w-10 rounded-full flex-shrink-0"><div><p class="text-sm"><b>Code Master</b> uploaded a new video.</p><p class="text-xs text-zinc-500 mt-1">1 hour ago</p></div></div></div>
+                </div>
+                <div class="relative">
+                    <button id="profile-menu-button" class="flex items-center"><img src="https://placehold.co/40x40/7c3aed/ffffff?text=R" alt="User Avatar" class="h-8 w-8 rounded-full cursor-pointer"></button>
+                    <div id="profile-menu" class="hidden absolute top-12 right-0 bg-white rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 w-80 z-50 py-2"><div class="flex items-center space-x-4 px-4 py-2 border-b"><img src="https://placehold.co/40x40/7c3aed/ffffff?text=R" class="h-10 w-10 rounded-full"><div><div class="font-semibold">Ronav Rahul</div><div class="text-sm text-zinc-600">@ronavrahul</div><a href="#" id="view-channel-link" class="text-sm text-blue-600 hover:underline mt-1 block">View your channel</a></div></div></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Wrapper -->
+        <div class="flex-1 flex overflow-hidden">
+            <!-- SIDEBAR -->
+            <aside id="sidebar" class="w-60 bg-white p-2 flex-shrink-0 hidden md:block">
+                 <nav>
+                    <ul>
+                        <li id="home-button" class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer bg-zinc-100 font-bold"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg><span class="font-medium">Home</span></li>
+                        <li id="subscriptions-button" class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg><span class="font-medium">Subscriptions</span></li>
+                    </ul>
+                 </nav>
+            </aside>
+            <!-- PAGE CONTENT AREA -->
+            <div id="page-content" class="flex-1 overflow-y-auto">
+                <!-- Pages will be rendered here by JS -->
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+    
+    <!-- BOTTOM NAVIGATION (Mobile Only) -->
+    <nav id="mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 flex justify-around py-1 z-40">
+        <a href="#" class="mobile-nav-link flex flex-col items-center justify-center text-center p-2 w-full text-red-600" data-page="home"><svg class="h-6 w-6 mb-1" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/></svg><span class="text-xs">Home</span></a>
+        <a href="#" class="mobile-nav-link flex flex-col items-center justify-center text-center p-2 w-full text-zinc-600" data-page="subscriptions"><svg class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg><span class="text-xs">Subscriptions</span></a>
+        <a href="#" class="mobile-nav-link flex flex-col items-center justify-center text-center p-2 w-full text-zinc-600" data-page="channel"><img src="https://placehold.co/40x40/7c3aed/ffffff?text=R" alt="User Avatar" class="h-6 w-6 rounded-full mb-1"><span class="text-xs">You</span></a>
+    </nav>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- TEMPLATES ---
+            const homePageTemplate = `
+                <div class="sticky top-0 bg-white px-4 py-3 border-b border-zinc-200 z-10"><div class="flex space-x-3 overflow-x-auto no-scrollbar"><button class="category-pill active px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">All</button><button class="category-pill bg-zinc-100 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">Music</button></div></div>
+                <main class="p-4"><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/eab308/000000?text=Prashant+Kishor" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/4f46e5/ffffff?text=TK" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">FULL STORY of Prashant Kishor</h3><p class="text-sm text-zinc-600">Tarun Kumar Kedia</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/ec4899/ffffff?text=Sharon+BIHAR" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/059669/ffffff?text=SV" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">SHARON FROM BIHAR (part 1)</h3><p class="text-sm text-zinc-600">Sharon Verma</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/f97316/ffffff?text=DEFENDER" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/3b82f6/ffffff?text=A" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">The Ultimate Off-Roader?</h3><p class="text-sm text-zinc-600">Auto Hub</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/8b5cf6/ffffff?text=RADHA+RAMAN" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/d946ef/ffffff?text=M" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">Radha Raman | Lofi Mix</h3><p class="text-sm text-zinc-600">Lofi Beats</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/6366f1/ffffff?text=Trekking+Himalayas" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/14b8a6/ffffff?text=T" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">My First Himalayan Trek</h3><p class="text-sm text-zinc-600">Travel Stories</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/10b981/ffffff?text=Coding+Tutorial" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/f43f5e/ffffff?text=C" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">Learn JavaScript in 2025</h3><p class="text-sm text-zinc-600">Code Master</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/64748b/ffffff?text=Unboxing" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/334155/ffffff?text=T" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">Unboxing the NEWEST Smartphone!</h3><p class="text-sm text-zinc-600">Tech Guru</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/ef4444/ffffff?text=Cooking+Show" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/f59e0b/ffffff?text=CS" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">How to make the perfect Pizza</h3><p class="text-sm text-zinc-600">Chef's Kitchen</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/22d3ee/000000?text=DIY+Crafts" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/a78bfa/ffffff?text=D" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">5 Easy DIY Room Decor Ideas</h3><p class="text-sm text-zinc-600">Crafty Creations</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/34d399/ffffff?text=Finance+Tips" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/facc15/000000?text=FT" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">Investing for Beginners in India</h3><p class="text-sm text-zinc-600">Money Matters</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/f87171/ffffff?text=Podcast" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/fb923c/ffffff?text=P" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">The Funniest Moments</h3><p class="text-sm text-zinc-600">The Talk Show</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/38bdf8/ffffff?text=Tech+Review" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/a8a29e/ffffff?text=TR" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">New Budget Laptop Review!</h3><p class="text-sm text-zinc-600">Gadget Geek</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/c084fc/ffffff?text=Workout" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/4ade80/ffffff?text=F" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">30-Min Full Body HIIT Workout</h3><p class="text-sm text-zinc-600">Fit Nation</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/94a3b8/000000?text=History" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/e11d48/ffffff?text=H" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">The Mauryan Empire: Untold Story</h3><p class="text-sm text-zinc-600">History Uncovered</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/f472b6/ffffff?text=Standup" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/581c87/ffffff?text=C" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">My School Life Was Weird</h3><p class="text-sm text-zinc-600">Comedy Central</p></div></div></div>
+                    <div class="video-card cursor-pointer"><div><img src="https://placehold.co/400x225/0ea5e9/ffffff?text=Google+Chrome" class="w-full rounded-xl"></div><div class="flex space-x-3 mt-2"><img src="https://placehold.co/40x40/22c55e/ffffff?text=G" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">Switch to Chrome for a great browsing experience.</h3><p class="text-sm text-zinc-600">Google Chrome</p></div></div></div>
+                </div></main>
+            `;
+            const channelPageTemplate = `<div class="h-40 sm:h-56 bg-zinc-200"><img src="https://placehold.co/1280x320/64748b/ffffff?text=Channel+Banner" class="w-full h-full object-cover"></div><div class="px-4 sm:px-8 bg-white"><div class="flex flex-col sm:flex-row items-start py-4"><img src="https://placehold.co/128x128/7c3aed/ffffff?text=R" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-white -mt-12 sm:-mt-16 flex-shrink-0"><div class="mt-4 sm:mt-0 sm:ml-6 flex-grow"><h1 class="text-3xl font-bold">Ronav Rahul</h1><div class="flex items-center text-sm text-zinc-600 space-x-4 mt-1"><span>@ronavrahul</span><span>1.2M subscribers</span><span>150 videos</span></div></div></div></div>`;
+            const subscriptionsPageTemplate = `<main class="p-4 sm:p-8"><h1 class="text-2xl font-bold mb-6">Latest from your subscriptions</h1></main>`;
+            const watchPageTemplate = `
+                <div class="p-4 lg:p-6 flex flex-col lg:flex-row gap-6">
+                    <div class="flex-1">
+                        <div class="aspect-video bg-black rounded-xl overflow-hidden"><img src="https://placehold.co/1280x720/000000/ffffff?text=Video+Player" class="w-full h-full object-cover"></div>
+                        <div class="mt-4">
+                            <h1 id="watch-video-title" class="text-xl font-bold">Video Title</h1>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-3">
+                                <div class="flex items-center space-x-3">
+                                    <img id="watch-channel-avatar" src="https://placehold.co/40x40/cccccc/ffffff?text=C" class="h-10 w-10 rounded-full">
+                                    <div><div id="watch-channel-name" class="font-semibold">Channel Name</div><div class="text-sm text-zinc-600">1.2M subscribers</div></div>
+                                    <button id="subscribe-button" class="bg-black text-white font-semibold py-2 px-4 rounded-full text-sm ml-4">Subscribe</button>
+                                </div>
+                                <div class="flex items-center space-x-2 mt-4 sm:mt-0">
+                                    <button class="flex items-center bg-zinc-200 hover:bg-zinc-300 rounded-full pl-4 pr-5 py-2 text-sm font-semibold"><svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.085a2 2 0 00-1.736.93L5.5 8m7 2H5M5 8h2m7 2h2"></path></svg> 15K</button>
+                                    <button class="flex items-center bg-zinc-200 hover:bg-zinc-300 rounded-full px-3 py-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.738 3h4.017c.163 0 .326.02.485.06L17 4m-7 10v5a2 2 0 002 2h.085a2 2 0 001.736-.93l2.5-4.5M17 4h-2M17 4h2"></path></svg></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-zinc-100 p-4 rounded-xl mt-4"><h2 class="font-bold text-lg mb-4">25 Comments</h2><div class="flex items-start space-x-3"><img src="https://placehold.co/40x40/f87171/ffffff?text=U" class="h-10 w-10 rounded-full"><div><p class="font-semibold text-sm">User One</p><p>This was an amazing video! Really helpful.</p></div></div></div>
+                    </div>
+                    <div class="lg:w-96 lg:flex-shrink-0 hidden lg:block"><h2 class="font-bold mb-3">Up next</h2></div>
+                </div>`;
 
-  <div class="flex flex-1 overflow-hidden">
-    <!-- SIDEBAR -->
-    <aside id="sidebar" class="hidden md:block w-56 bg-white border-r p-2">
-      <ul>
-        <li id="home-button" class="p-2 rounded hover:bg-zinc-100 cursor-pointer font-bold bg-zinc-100">🏠 Home</li>
-        <li id="subscriptions-button" class="p-2 rounded hover:bg-zinc-100 cursor-pointer">📺 Subscriptions</li>
-      </ul>
-    </aside>
+            // --- DOM Elements ---
+            const pageContent = document.getElementById('page-content');
+            const mainHeader = document.getElementById('main-header');
+            const mobileNav = document.getElementById('mobile-nav');
+            const sidebar = document.getElementById('sidebar');
+            const backButton = document.getElementById('back-button');
+            const hamburgerButton = document.getElementById('hamburger-button');
+            const logoButton = document.getElementById('logo-button');
+            const homeButton = document.getElementById('home-button');
+            const subscriptionsButton = document.getElementById('subscriptions-button');
+            const viewChannelLink = document.getElementById('view-channel-link');
+            const profileMenu = document.getElementById('profile-menu');
+            const notificationMenu = document.getElementById('notification-menu');
+            const profileMenuButton = document.getElementById('profile-menu-button');
+            const notificationButton = document.getElementById('notification-button');
+            
+            // --- App Logic ---
+            function renderPage(template) {
+                pageContent.innerHTML = template;
+                attachVideoCardListeners();
+            }
 
-    <!-- CONTENT -->
-    <div id="page-content" class="flex-1 overflow-y-auto">
+            function showPage(pageName) {
+                const isWatchPage = pageName === 'watch';
+                mainHeader.style.display = 'flex'; // Always show header
+                mobileNav.style.display = isWatchPage ? 'none' : 'flex';
+                sidebar.style.display = (isWatchPage || window.innerWidth < 768) ? 'none' : 'block';
+                backButton.style.display = isWatchPage ? 'block' : 'none';
+                hamburgerButton.style.display = isWatchPage ? 'none' : 'block';
 
-      <!-- HOME -->
-      <div id="home-page" class="p-4">
-        <h2 class="font-bold text-lg mb-3">Home</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="video-card cursor-pointer bg-white rounded-xl p-2 shadow" data-video-id="1">
-            <img src="https://placehold.co/400x225/eab308/000?text=Video1" class="rounded-lg">
-            <h3 class="mt-2 font-semibold">FULL STORY of Prashant Kishor</h3>
-            <p class="text-sm text-zinc-600">Tarun Kumar Kedia</p>
-          </div>
-          <div class="video-card cursor-pointer bg-white rounded-xl p-2 shadow" data-video-id="2">
-            <img src="https://placehold.co/400x225/ec4899/fff?text=Video2" class="rounded-lg">
-            <h3 class="mt-2 font-semibold">SHARON FROM BIHAR (part 1)</h3>
-            <p class="text-sm text-zinc-600">Sharon Verma</p>
-          </div>
-        </div>
-      </div>
+                if (pageName === 'home') renderPage(homePageTemplate);
+                else if (pageName === 'channel') renderPage(channelPageTemplate);
+                else if (pageName === 'subscriptions') renderPage(subscriptionsPageTemplate);
+                else if (pageName === 'watch') renderPage(watchPageTemplate);
+                
+                window.scrollTo(0, 0);
+            }
+            
+            function attachVideoCardListeners() {
+                document.querySelectorAll('.video-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const videoTitle = card.querySelector('h3').textContent;
+                        const channelName = card.querySelector('p').textContent;
+                        showPage('watch');
+                        setTimeout(() => {
+                            document.getElementById('watch-video-title').textContent = videoTitle;
+                            document.getElementById('watch-channel-name').textContent = channelName;
+                            const subBtn = document.getElementById('subscribe-button');
+                            if(subBtn) {
+                                subBtn.addEventListener('click', (e) => {
+                                    e.target.classList.toggle('bg-black'); e.target.classList.toggle('text-white');
+                                    e.target.classList.toggle('bg-zinc-200'); e.target.classList.toggle('text-black');
+                                    e.target.textContent = e.target.textContent === 'Subscribe' ? 'Subscribed' : 'Subscribe';
+                                });
+                            }
+                        }, 0);
+                    });
+                });
+            }
+            
+            // --- Event Listeners ---
+            logoButton.addEventListener('click', () => showPage('home'));
+            homeButton.addEventListener('click', () => showPage('home'));
+            backButton.addEventListener('click', () => showPage('home'));
+            subscriptionsButton.addEventListener('click', () => showPage('subscriptions'));
+            viewChannelLink.addEventListener('click', (e) => { e.preventDefault(); showPage('channel'); closeAllMenus(); });
+            
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', e => { e.preventDefault(); showPage(link.dataset.page); });
+            });
 
-      <!-- SUBSCRIPTIONS -->
-      <div id="subscriptions-page" class="hidden p-4">
-        <h2 class="font-bold text-lg mb-3">Your Subscriptions</h2>
-        <p class="text-zinc-600">Subscribed channels will appear here.</p>
-      </div>
+            function closeAllMenus() {
+                profileMenu.classList.add('hidden');
+                notificationMenu.classList.add('hidden');
+            }
 
-      <!-- CHANNEL -->
-      <div id="channel-page" class="hidden p-4">
-        <h2 class="font-bold text-lg mb-3">Your Channel</h2>
-        <div class="flex items-center space-x-4 mb-4">
-          <img src="https://placehold.co/80x80/7c3aed/fff?text=R" class="rounded-full">
-          <div>
-            <p class="font-semibold">Ronav Rahul</p>
-            <p class="text-sm text-zinc-600">1.2K subscribers</p>
-          </div>
-        </div>
-        <h3 class="font-semibold mb-2">Uploaded Videos</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="bg-white rounded-xl p-2 shadow">Demo Video 1</div>
-          <div class="bg-white rounded-xl p-2 shadow">Demo Video 2</div>
-        </div>
-      </div>
+            profileMenuButton.addEventListener('click', (e) => { e.stopPropagation(); const isHidden = profileMenu.classList.contains('hidden'); closeAllMenus(); if (isHidden) profileMenu.classList.remove('hidden'); });
+            notificationButton.addEventListener('click', (e) => { e.stopPropagation(); const isHidden = notificationMenu.classList.contains('hidden'); closeAllMenus(); if (isHidden) notificationMenu.classList.remove('hidden'); });
+            window.addEventListener('click', () => closeAllMenus());
 
-      <!-- WATCH PAGE -->
-      <div id="watch-page" class="hidden p-4">
-        <div class="aspect-video bg-black rounded-lg overflow-hidden">
-          <video id="video-player" controls class="w-full h-full">
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-          </video>
-        </div>
-        <h1 id="watch-video-title" class="font-bold text-xl mt-3">Video Title</h1>
-
-        <div class="flex items-center mt-3 space-x-3">
-          <img id="watch-channel-avatar" src="https://placehold.co/40x40/ccc/fff?text=C" class="rounded-full">
-          <div>
-            <p id="watch-channel-name" class="font-semibold">Channel Name</p>
-            <p class="text-sm text-zinc-600">1.2M subscribers</p>
-          </div>
-          <button id="subscribe-btn" class="ml-4 bg-black text-white px-4 py-1 rounded-full">Subscribe</button>
-        </div>
-
-        <!-- Comments -->
-        <div class="mt-4">
-          <h3 class="font-semibold mb-2">Comments</h3>
-          <div class="mb-2 flex">
-            <input id="comment-input" type="text" placeholder="Add a comment..." class="flex-1 border rounded-l px-2 py-1">
-            <button id="comment-btn" class="bg-red-600 text-white px-4 rounded-r">Post</button>
-          </div>
-          <ul id="comment-list" class="space-y-2"></ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<script>
-  const pages = {
-    home: document.getElementById('home-page'),
-    subs: document.getElementById('subscriptions-page'),
-    channel: document.getElementById('channel-page'),
-    watch: document.getElementById('watch-page')
-  };
-  const sidebar = document.getElementById('sidebar');
-
-  function showPage(page) {
-    Object.values(pages).forEach(p => p.classList.add('hidden'));
-    page.classList.remove('hidden');
-  }
-
-  // Sidebar buttons
-  document.getElementById('home-button').onclick = () => showPage(pages.home);
-  document.getElementById('subscriptions-button').onclick = () => showPage(pages.subs);
-  document.getElementById('logo-button').onclick = () => showPage(pages.home);
-
-  // Profile menu toggle
-  const profileMenuBtn = document.getElementById('profile-menu-button');
-  const profileMenu = document.getElementById('profile-menu');
-  profileMenuBtn.addEventListener('click', () => {
-    profileMenu.classList.toggle('hidden');
-  });
-
-  // View channel link
-  document.getElementById('view-channel-link').onclick = () => showPage(pages.channel);
-
-  // Video card click
-  document.querySelectorAll('.video-card').forEach(card => {
-    card.onclick = () => {
-      document.getElementById('watch-video-title').textContent = card.querySelector('h3').textContent;
-      document.getElementById('watch-channel-name').textContent = card.querySelector('p').textContent;
-      showPage(pages.watch);
-    };
-  });
-
-  // Subscribe button toggle
-  const subBtn = document.getElementById('subscribe-btn');
-  subBtn.addEventListener('click', () => {
-    if(subBtn.textContent === 'Subscribe') {
-      subBtn.textContent = 'Subscribed';
-      subBtn.classList.remove('bg-black');
-      subBtn.classList.add('bg-zinc-300', 'text-black');
-    } else {
-      subBtn.textContent = 'Subscribe';
-      subBtn.classList.add('bg-black', 'text-white');
-      subBtn.classList.remove('bg-zinc-300', 'text-black');
-    }
-  });
-
-  // Comment system
-  const commentInput = document.getElementById('comment-input');
-  const commentBtn = document.getElementById('comment-btn');
-  const commentList = document.getElementById('comment-list');
-  commentBtn.addEventListener('click', () => {
-    if(commentInput.value.trim() !== '') {
-      const li = document.createElement('li');
-      li.textContent = commentInput.value;
-      li.className = 'bg-white p-2 rounded shadow';
-      commentList.appendChild(li);
-      commentInput.value = '';
-    }
-  });
-</script>
+            // --- Initial Load ---
+            showPage('home');
+        });
+    </script>
 </body>
 </html>
 
