@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZenTube</title>
-    <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Roboto font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -19,12 +17,15 @@
         .category-pill.active { background-color: #0f0f0f; color: #ffffff; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .description-box.collapsed {
+            max-height: 4.5rem; /* Approx 3 lines */
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="text-black">
 
     <div id="app" class="h-screen w-full flex flex-col">
-        <!-- HEADER -->
         <header id="main-header" class="bg-white flex-shrink-0 flex items-center justify-between px-2 sm:px-4 py-2 z-40 shadow-sm">
             <div class="flex items-center space-x-2 sm:space-x-4">
                 <button id="back-button" class="p-2 rounded-full hover:bg-zinc-200 hidden"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></button>
@@ -53,25 +54,20 @@
             </div>
         </header>
 
-        <!-- Main Content Wrapper -->
         <div class="flex-1 flex overflow-hidden">
-            <!-- SIDEBAR -->
             <aside id="sidebar" class="w-60 bg-white p-2 flex-shrink-0 hidden md:block">
                  <nav>
                     <ul>
                         <li id="home-button" class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer bg-zinc-100 font-bold"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg><span class="font-medium">Home</span></li>
                         <li id="subscriptions-button" class="flex items-center space-x-4 p-2 rounded-lg hover:bg-zinc-100 cursor-pointer"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg><span class="font-medium">Subscriptions</span></li>
                     </ul>
-                 </nav>
+                </nav>
             </aside>
-            <!-- PAGE CONTENT AREA -->
             <div id="page-content" class="flex-1 overflow-y-auto">
-                <!-- Pages will be rendered here by JS -->
-            </div>
+                </div>
         </div>
     </div>
     
-    <!-- BOTTOM NAVIGATION (Mobile Only) -->
     <nav id="mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 flex justify-around py-1 z-40">
         <a href="#" class="mobile-nav-link flex flex-col items-center justify-center text-center p-2 w-full text-red-600" data-page="home"><svg class="h-6 w-6 mb-1" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/></svg><span class="text-xs">Home</span></a>
         <a href="#" class="mobile-nav-link flex flex-col items-center justify-center text-center p-2 w-full text-zinc-600" data-page="subscriptions"><svg class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg><span class="text-xs">Subscriptions</span></a>
@@ -80,25 +76,25 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- DATA ---
+            // --- DATA (UPDATED with views, uploadDate, description, comments) ---
             const videoData = [
-                { id: 1, thumb: 'https://placehold.co/400x225/eab308/000000?text=Animated+Rabbit', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/4f46e5/ffffff?text=TK', title: 'A Story of a Rabbit', channelName: 'Animation Studios' },
-                { id: 2, thumb: 'https://placehold.co/400x225/ec4899/ffffff?text=Robot+Story', previewVid: 'https://test-videos.co.uk/vids/elephantsdream/mp4/h264/360/Elephants_Dream_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/059669/ffffff?text=SV', title: 'The Elephant\'s Dream', channelName: 'Sci-Fi World' },
-                { id: 3, thumb: 'https://placehold.co/400x225/f97316/ffffff?text=Fantasy+Adventure', previewVid: 'https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/3b82f6/ffffff?text=A', title: 'Sintel: A Dragon\'s Tale', channelName: 'Fantasy Epics' },
-                { id: 4, thumb: 'https://placehold.co/400x225/8b5cf6/ffffff?text=Peaceful+Lake', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-beautiful-aerial-shot-of-a-lake-in-the-mountains-24855-small.mp4', channelAvatar: 'https://placehold.co/40x40/d946ef/ffffff?text=M', title: 'Peaceful Mountain Lake', channelName: 'Nature Vibes' },
-                { id: 5, thumb: 'https://placehold.co/400x225/6366f1/ffffff?text=Ocean+Waves', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-sea-1164-small.mp4', channelAvatar: 'https://placehold.co/40x40/14b8a6/ffffff?text=T', title: 'Relaxing Ocean Waves', channelName: 'SeaScapes' },
-                { id: 6, thumb: 'https://placehold.co/400x225/10b981/ffffff?text=Autumn+Forest', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-small.mp4', channelAvatar: 'https://placehold.co/40x40/f43f5e/ffffff?text=C', title: 'Sunlight in the Forest', channelName: 'Explore Outdoors' },
-                { id: 7, thumb: 'https://placehold.co/400x225/64748b/ffffff?text=City+Night', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-highway-in-the-dark-with-vehicle-lights-44656-small.mp4', channelAvatar: 'https://placehold.co/40x40/334155/ffffff?text=T', title: 'Night Drive in the City', channelName: 'Urban Life' },
-                { id: 8, thumb: 'https://placehold.co/400x225/ef4444/ffffff?text=Coffee+Time', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-making-a-cappuccino-2216-small.mp4', channelAvatar: 'https://placehold.co/40x40/f59e0b/ffffff?text=CS', title: 'Making the Perfect Cappuccino', channelName: "Cafe Corner" },
+                { id: 1, thumb: 'https://placehold.co/400x225/eab308/000000?text=Animated+Rabbit', previewVid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/4f46e5/ffffff?text=TK', title: 'A Story of a Rabbit', channelName: 'Animation Studios', views: '1.2M', uploadDate: '2 weeks ago', description: 'A short animated film about the adventures of a clever rabbit. This project was created using Blender and took over 3 months to complete. We hope you enjoy it!', comments: [{ user: 'Alex', avatar: 'https://placehold.co/40x40/f87171/ffffff?text=A', text: 'Amazing animation quality!' }] },
+                { id: 2, thumb: 'https://placehold.co/400x225/ec4899/ffffff?text=Robot+Story', previewVid: 'https://test-videos.co.uk/vids/elephantsdream/mp4/h264/360/Elephants_Dream_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/059669/ffffff?text=SV', title: 'The Elephant\'s Dream', channelName: 'Sci-Fi World', views: '875K', uploadDate: '1 month ago', description: 'Explore a surreal world created by two dreamers. A classic open-source film that pushed the boundaries of what was possible.', comments: [{ user: 'Beth', avatar: 'https://placehold.co/40x40/34d399/ffffff?text=B', text: 'A classic! So trippy.' }, { user: 'Chris', avatar: 'https://placehold.co/40x40/fbbf24/ffffff?text=C', text: 'The visuals are mind-bending.' }] },
+                { id: 3, thumb: 'https://placehold.co/400x225/f97316/ffffff?text=Fantasy+Adventure', previewVid: 'https://test-videos.co.uk/vids/sintel/mp4/h264/360/Sintel_360_10s_1MB.mp4', channelAvatar: 'https://placehold.co/40x40/3b82f6/ffffff?text=A', title: 'Sintel: A Dragon\'s Tale', channelName: 'Fantasy Epics', views: '2.5M', uploadDate: '3 months ago', description: 'A young girl on a quest to find her pet dragon. This emotional journey is a testament to loyalty and courage.', comments: [] },
+                { id: 4, thumb: 'https://placehold.co/400x225/8b5cf6/ffffff?text=Peaceful+Lake', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-beautiful-aerial-shot-of-a-lake-in-the-mountains-24855-small.mp4', channelAvatar: 'https://placehold.co/40x40/d946ef/ffffff?text=M', title: 'Peaceful Mountain Lake', channelName: 'Nature Vibes', views: '500K', uploadDate: '1 day ago', description: 'Relax and unwind with this stunning 4K drone footage of a serene mountain lake. Perfect for meditation or background visuals.', comments: [{ user: 'Diana', avatar: 'https://placehold.co/40x40/a78bfa/ffffff?text=D', text: 'So calming, thank you for this.' }] },
+                { id: 5, thumb: 'https://placehold.co/400x225/6366f1/ffffff?text=Ocean+Waves', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-sea-1164-small.mp4', channelAvatar: 'https://placehold.co/40x40/14b8a6/ffffff?text=T', title: 'Relaxing Ocean Waves', channelName: 'SeaScapes', views: '3.1M', uploadDate: '5 months ago', description: 'Listen to the gentle sounds of ocean waves crashing on the shore. 10 hours of pure relaxation.', comments: [] },
+                { id: 6, thumb: 'https://placehold.co/400x225/10b981/ffffff?text=Autumn+Forest', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-small.mp4', channelAvatar: 'https://placehold.co/40x40/f43f5e/ffffff?text=C', title: 'Sunlight in the Forest', channelName: 'Explore Outdoors', views: '980K', uploadDate: '2 days ago', description: 'A beautiful walk through an autumn forest with sunlight filtering through the trees.', comments: [] },
+                { id: 7, thumb: 'https://placehold.co/400x225/64748b/ffffff?text=City+Night', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-highway-in-the-dark-with-vehicle-lights-44656-small.mp4', channelAvatar: 'https://placehold.co/40x40/334155/ffffff?text=T', title: 'Night Drive in the City', channelName: 'Urban Life', views: '1.1M', uploadDate: '6 days ago', description: 'A hypnotic timelapse of a night drive through city highways.', comments: [] },
+                { id: 8, thumb: 'https://placehold.co/400x225/ef4444/ffffff?text=Coffee+Time', previewVid: 'https://assets.mixkit.co/videos/preview/mixkit-making-a-cappuccino-2216-small.mp4', channelAvatar: 'https://placehold.co/40x40/f59e0b/ffffff?text=CS', title: 'Making the Perfect Cappuccino', channelName: "Cafe Corner", views: '450K', uploadDate: '3 weeks ago', description: 'Learn the art of making a perfect cappuccino at home, from grinding the beans to the final latte art.', comments: [] },
             ];
-            const fullVideoData = [...videoData, ...videoData.map(v => ({...v, id: v.id + 8}))]; // Duplicate for 16 videos
+            const fullVideoData = [...videoData, ...videoData.map(v => ({...v, id: v.id + 8, comments: []}))]; // Duplicate for 16 videos
 
-            // --- TEMPLATES ---
-            const createVideoCardTemplate = (video) => `<div class="video-card cursor-pointer group" data-video-id="${video.id}"><div class="relative rounded-xl overflow-hidden aspect-video"><img src="${video.thumb}" class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"><video src="${video.previewVid}" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100" muted loop playsinline></video></div><div class="flex space-x-3 mt-2"><img src="${video.channelAvatar}" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">${video.title}</h3><p class="text-sm text-zinc-600">${video.channelName}</p></div></div></div>`;
+            // --- TEMPLATES (UPDATED) ---
+            const createVideoCardTemplate = (video) => `<div class="video-card cursor-pointer group" data-video-id="${video.id}"><div class="relative rounded-xl overflow-hidden aspect-video"><img src="${video.thumb}" class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"><video src="${video.previewVid}" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100" muted loop playsinline></video></div><div class="flex space-x-3 mt-2"><img src="${video.channelAvatar}" class="h-9 w-9 rounded-full"><div><h3 class="font-medium text-base leading-tight">${video.title}</h3><p class="text-sm text-zinc-600">${video.channelName}</p><p class="text-sm text-zinc-600">${video.views} views • ${video.uploadDate}</p></div></div></div>`;
             const homePageTemplate = (videos) => `<div class="sticky top-0 bg-white px-4 py-3 border-b border-zinc-200 z-10"><div class="flex space-x-3 overflow-x-auto no-scrollbar"><button class="category-pill active px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">All</button><button class="category-pill bg-zinc-100 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap">Music</button></div></div><main class="p-4"><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">${videos.map(createVideoCardTemplate).join('')}</div></main>`;
             const channelPageTemplate = `<div class="h-40 sm:h-56 bg-zinc-200"><img src="https://placehold.co/1280x320/64748b/ffffff?text=Channel+Banner" class="w-full h-full object-cover"></div><div class="px-4 sm:px-8 bg-white"><div class="flex flex-col sm:flex-row items-start py-4"><img src="https://placehold.co/128x128/7c3aed/ffffff?text=R" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-white -mt-12 sm:-mt-16 flex-shrink-0"><div class="mt-4 sm:mt-0 sm:ml-6 flex-grow"><h1 class="text-3xl font-bold">Ronav Rahul</h1><div class="flex items-center text-sm text-zinc-600 space-x-4 mt-1"><span>@ronavrahul</span><span>1.2M subscribers</span><span>150 videos</span></div></div></div></div><main class="p-4"><h2 class="text-xl font-bold mb-4">Uploads</h2><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">${fullVideoData.slice(0, 4).map(createVideoCardTemplate).join('')}</div></main>`;
             const subscriptionsPageTemplate = `<main class="p-4 sm:p-8"><h1 class="text-2xl font-bold mb-6">Latest from your subscriptions</h1></main>`;
-            const createSuggestedVideoTemplate = (video) => `<div class="video-card cursor-pointer group flex gap-3" data-video-id="${video.id}"><div class="w-40 flex-shrink-0 relative rounded-lg overflow-hidden aspect-video"><img src="${video.thumb}" class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"><video src="${video.previewVid}" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100" muted loop playsinline></video></div><div><h3 class="text-sm font-semibold leading-tight">${video.title}</h3><p class="text-xs text-zinc-600 mt-1">${video.channelName}</p></div></div>`;
+            const createSuggestedVideoTemplate = (video) => `<div class="video-card cursor-pointer group flex gap-3" data-video-id="${video.id}"><div class="w-40 flex-shrink-0 relative rounded-lg overflow-hidden aspect-video"><img src="${video.thumb}" class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"><video src="${video.previewVid}" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100" muted loop playsinline></video></div><div><h3 class="text-sm font-semibold leading-tight">${video.title}</h3><p class="text-xs text-zinc-600 mt-1">${video.channelName}</p><p class="text-xs text-zinc-600">${video.views} views</p></div></div>`;
             const watchPageTemplate = (video, suggestions) => `
                 <div class="p-0 md:p-6 flex flex-col lg:flex-row gap-6">
                     <div class="flex-1">
@@ -113,7 +109,29 @@
                                 </div>
                                 <div class="flex items-center space-x-2 mt-4 sm:mt-0"><div class="flex items-center bg-zinc-200 rounded-full"><button class="flex items-center hover:bg-zinc-300 rounded-l-full pl-4 pr-3 py-2 text-sm font-semibold"><svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.085a2 2 0 00-1.736.93L5.5 8m7 2H5M5 8h2m7 2h2"></path></svg> 15K</button><div class="border-l border-zinc-300 h-6"></div><button class="flex items-center hover:bg-zinc-300 rounded-r-full px-3 py-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.738 3h4.017c.163 0 .326.02.485.06L17 4m-7 10v5a2 2 0 002 2h.085a2 2 0 001.736-.93l2.5-4.5M17 4h-2M17 4h2"></path></svg></button></div></div>
                             </div>
-                            <div class="bg-zinc-100 p-4 rounded-xl mt-4"><h2 class="font-bold text-lg mb-4">25 Comments</h2><div class="flex items-start space-x-3"><img src="https://placehold.co/40x40/f87171/ffffff?text=U" class="h-10 w-10 rounded-full"><div><p class="font-semibold text-sm">User One</p><p>This was an amazing video! Really helpful.</p></div></div></div>
+                            <div class="bg-zinc-100 p-3 rounded-xl mt-4 cursor-pointer">
+                                <div id="description-box" class="description-box collapsed text-sm whitespace-pre-wrap"><b>${video.views} views ${video.uploadDate}</b>\n${video.description}</div>
+                                <b id="toggle-description" class="text-sm mt-2 block">...more</b>
+                            </div>
+                            <div id="comments-section" class="mt-4">
+                                <h2 class="font-bold text-lg mb-4"><span id="comment-count">${video.comments.length}</span> Comments</h2>
+                                <div class="flex items-start space-x-3 mb-6">
+                                    <img src="https://placehold.co/40x40/7c3aed/ffffff?text=R" class="h-10 w-10 rounded-full">
+                                    <input id="new-comment-input" type="text" placeholder="Add a comment..." class="w-full bg-transparent border-b border-zinc-400 focus:outline-none focus:border-black py-2">
+                                    <button id="add-comment-btn" class="bg-zinc-200 px-4 py-2 rounded-full font-semibold text-sm">Comment</button>
+                                </div>
+                                <div id="comments-list" class="space-y-4">
+                                    ${video.comments.map(comment => `
+                                        <div class="flex items-start space-x-3">
+                                            <img src="${comment.avatar}" class="h-10 w-10 rounded-full">
+                                            <div>
+                                                <p class="font-semibold text-sm">@${comment.user.toLowerCase()}</p>
+                                                <p>${comment.text}</p>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="lg:w-96 lg:flex-shrink-0 p-4 lg:p-0"><h2 class="font-bold mb-3 text-lg">Up next</h2><div class="space-y-4">${suggestions.map(createSuggestedVideoTemplate).join('')}</div></div>
@@ -179,7 +197,10 @@
                         
                         const suggestions = fullVideoData.filter(v => v.id !== videoId);
                         showPage('watch', { video: cardData, suggestions });
-                         setTimeout(() => {
+
+                        // Attach listeners for newly created elements on the watch page
+                        setTimeout(() => {
+                            // Subscribe button
                             const subBtn = document.getElementById('subscribe-button');
                             if(subBtn) {
                                 subBtn.addEventListener('click', (e) => {
@@ -188,6 +209,51 @@
                                     e.target.textContent = e.target.textContent === 'Subscribe' ? 'Subscribed' : 'Subscribe';
                                 });
                             }
+                            
+                            // NEW: Description box toggle
+                            const descBox = document.getElementById('description-box');
+                            const descToggle = document.getElementById('toggle-description');
+                            if (descBox && descToggle) {
+                                descToggle.addEventListener('click', () => {
+                                    descBox.classList.toggle('collapsed');
+                                    descToggle.textContent = descBox.classList.contains('collapsed') ? '...more' : 'Show less';
+                                });
+                            }
+
+                            // NEW: Add comment functionality
+                            const addCommentBtn = document.getElementById('add-comment-btn');
+                            const newCommentInput = document.getElementById('new-comment-input');
+                            const commentsList = document.getElementById('comments-list');
+                            const commentCount = document.getElementById('comment-count');
+                            if (addCommentBtn && newCommentInput && commentsList && commentCount) {
+                                addCommentBtn.addEventListener('click', () => {
+                                    const commentText = newCommentInput.value.trim();
+                                    if (commentText) {
+                                        // Create a new comment object (in a real app, this would come from the logged-in user)
+                                        const newComment = {
+                                            user: 'Ronav',
+                                            avatar: 'https://placehold.co/40x40/7c3aed/ffffff?text=R',
+                                            text: commentText
+                                        };
+                                        // Add to the in-memory data
+                                        cardData.comments.unshift(newComment);
+                                        // Re-render just the comments list
+                                        commentsList.innerHTML = cardData.comments.map(comment => `
+                                            <div class="flex items-start space-x-3">
+                                                <img src="${comment.avatar}" class="h-10 w-10 rounded-full">
+                                                <div>
+                                                    <p class="font-semibold text-sm">@${comment.user.toLowerCase()}</p>
+                                                    <p>${comment.text}</p>
+                                                </div>
+                                            </div>
+                                        `).join('') + commentsList.innerHTML;
+                                        // Clear the input and update the count
+                                        newCommentInput.value = '';
+                                        commentCount.textContent = cardData.comments.length;
+                                    }
+                                });
+                            }
+
                         }, 0);
                     });
                 });
@@ -234,4 +300,3 @@
     </script>
 </body>
 </html>
-
